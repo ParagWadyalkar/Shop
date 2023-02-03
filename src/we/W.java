@@ -41,6 +41,7 @@ public class W {
 		driver.findElement(By.xpath("//div[@id=\"sidebar-menu\"]/ul/ul/li/ul/li/a")).click();
 		driver.findElement(By.xpath("(//div[@class=\"container-fluid\"])[1]/div[1]")).click();
 		Thread.sleep(2000);
+		
 		driver.findElement(By.name("name")).sendKeys("Demo");
 		driver.findElement(By.id("message")).sendKeys("20% offer on each product");
 		
@@ -48,6 +49,7 @@ public class W {
 		upload_file.sendKeys("C:\\Users\\AVITA\\Desktop\\Image\\download (2).jpg");
 		
 		driver.findElement(By.xpath("(//div[@class=\"modal-footer\"])/button[2]")).click();
+		driver.close();
 
 	}
 

@@ -13,6 +13,16 @@
           <source>1.8</source>
           <target>1.8</target>
         </configuration>
+        
+        <dependencies>
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		 <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-remote-driver</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+    
+		</dependencies>
       </plugin>
     </plugins>
   </build>

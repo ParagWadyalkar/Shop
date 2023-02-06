@@ -18,7 +18,10 @@ public class W {
 		//1-Allow, 2-Block, 0-default
 		options.setExperimentalOption("prefs",prefs);
 	//	WebDriverManager.chromedriver().setup();
-		System.setProperty("webdriver.chrome.driver", "/usr/bin/google-chrome");
+		
+//		/usr/bin/google-chrome
+	System.setProperty("webdriver.chrome.driver", "/usr/bin/google-chrome /usr/share/man/man1/google-chrome.1.gz");
+		//System.setProperty("webdriver.chrome.driver", "D:\\ed\\chromedriver_win32\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver(options);
 
 		driver.manage().window().maximize();

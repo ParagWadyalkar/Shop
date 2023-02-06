@@ -19,7 +19,8 @@ public class W {
 		prefs.put("profile.default_content_setting_values.notifications", 1);
 		//1-Allow, 2-Block, 0-default
 		options.setExperimentalOption("prefs",prefs);	
-		WebDriverManager.chromedriver().setup();
+	//	WebDriverManager.chromedriver().setup();
+		System.setProperty("webdriver.chrome.driver", "D:\\ed\\chromedriver_win32\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver(options);
 		
 		driver.manage().window().maximize();

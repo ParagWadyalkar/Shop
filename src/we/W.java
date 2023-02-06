@@ -13,14 +13,14 @@ public class W {
 
 	public static void main(String[] args) throws InterruptedException {
 		ChromeOptions options=new ChromeOptions();
-		Map<String, Object> prefs=new HashMap<String,Object>();
+		Map<String, Object> prefs=new HashMap<>();
 		prefs.put("profile.default_content_setting_values.notifications", 1);
 		//1-Allow, 2-Block, 0-default
-		options.setExperimentalOption("prefs",prefs);	
+		options.setExperimentalOption("prefs",prefs);
 	//	WebDriverManager.chromedriver().setup();
 		System.setProperty("webdriver.chrome.driver", "/usr/bin/google-chrome");
 		WebDriver driver = new ChromeDriver(options);
-		
+
 		driver.manage().window().maximize();
 		driver.get("https://dev.managemedias.com/login");
 		driver.findElement(By.name("email")).sendKeys("vishwas.panke@selftech.in");
@@ -34,19 +34,19 @@ public class W {
 		driver.findElement(By.id("pass")).sendKeys("parag@1234");
 		driver.findElement(By.id("loginbutton")).click();
 		driver.findElement(By.xpath("(//span[@class='x1lliihq x6ikm8r x10wlt62 x1n2onr6 xlyipyv xuxw1ft'])[2]")).click();
-	
+
 		driver.findElement(By.id("vertical-menu-btn")).click();
 		driver.findElement(By.xpath("//div[@id=\"sidebar-menu\"]/ul/ul/li/a")).click();
 		driver.findElement(By.xpath("//div[@id=\"sidebar-menu\"]/ul/ul/li/ul/li/a")).click();
 		driver.findElement(By.xpath("(//div[@class=\"container-fluid\"])[1]/div[1]")).click();
 		Thread.sleep(2000);
-		
+
 		driver.findElement(By.name("name")).sendKeys("Demo");
 		driver.findElement(By.id("message")).sendKeys("20% offer on each product");
-		
+
 		WebElement upload_file = driver.findElement(By.id("image"));
 		upload_file.sendKeys("C:\\Users\\AVITA\\Desktop\\Image\\download (2).jpg");
-		
+
 		driver.findElement(By.xpath("(//div[@class=\"modal-footer\"])/button[2]")).click();
 		driver.close();
 

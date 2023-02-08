@@ -1,3 +1,4 @@
+name: Deploy to Amazon ECS
 variables:
   DOCKER_REGISTRY: 416343623660.dkr.ecr.ap-south-1.amazonaws.com/ecrshop
   APP_NAME: ecrshop

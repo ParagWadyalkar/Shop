@@ -1,0 +1,35 @@
+variables:
+  DOCKER_REGISTRY: 416343623660.dkr.ecr.ap-south-1.amazonaws.com/ecrshop
+  APP_NAME: ecrshop
+  TAG: "$CI_COMMIT_SHORT_SHA-$CI_PIPELINE_ID"
+
+stages:
+  - build
+  - build-docker-image
+  - push-image-to-aws-ecr
+
+build-java-project:
+  stage: build
+  script:
+    mvn package
+  artifacts:
+    paths:
+      - /home/gitlab-runner/
+
+build-docker-image:
+  stage: build-docker-image
+  script:
+    - docker info
+    - docker build -t $DOCKER_REGISTRY/$APP_NAME:"$TAG" .
+
+Push Docker Image to AWS ECR:
+  stage: push-image-to-aws-ecr
+  image: 
+    name: $DOCKER_REGISTRY/$APP_NAME:"$TAG"
+  services:
+    - docker:dind
+  script:
+    - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 416343623660.dkr.ecr.ap-south-1.amazonaws.com
+    - docker build -t ecrshop .
+    - docker tag ecrshop:latest 416343623660.dkr.ecr.ap-south-1.amazonaws.com/ecrshop:latest
+    - docker push 416343623660.dkr.ecr.ap-south-1.amazonaws.com/ecrshop:latest

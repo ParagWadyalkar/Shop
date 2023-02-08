@@ -1,0 +1,38 @@
+# Use a specific version of the GitLab Runner's environment
+image: php:7.4
+
+# Define stages in the pipeline
+stages:
+  - build
+  - test
+  - deploy
+
+# Define variables used in the pipeline
+variables:
+  TEST_DIR: "Shop/target/classes/we"
+  DEPLOY_HOST: "15.235.140.195"
+  DEPLOY_USER: "ubuntu"
+  DEPLOY_PASSWORD: "dPJHykY4Yzc9"
+
+# Build stage
+build:
+  stage: build
+  script:
+    - mvn clean install
+  artifacts:
+    paths:
+      - target/
+
+# Test stage
+test:
+  stage: test
+  script:
+    - mvn test --tests "$TEST_DIR"
+
+# Deploy stage
+deploy:
+  stage: deploy
+  script:
+    - echo "$DEPLOY_PASSWORD" | sshpass -p "$DEPLOY_PASSWORD" scp -r target/ "$DEPLOY_USER@$DEPLOY_HOST:/"
+  only:
+    - master
